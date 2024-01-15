@@ -11,4 +11,5 @@ Hey there, I'm trying to develop a game from zero, not using tutorials or any ma
 - Add start screen []
 - Add game over screen []
 - Add sound []
+- Add ilustrations (pure css) []
 - Add animations []

@@ -1,18 +1,9 @@
-/*
-TODO:
-- Add collision detection
-- Add score
-- Add levels
-- Add start screen
-- Add game over screen
-- Add sound
-- Add animations
- */
-
 import './App.css';
 
 import { useEffect, useState, useRef } from 'react';
 import './App.css';
+
+import { Crab } from './components/gameObjects/invaders/Crab/Crab';
 
 interface InvaderProps {
   x: number;
@@ -129,6 +120,7 @@ const App = () => {
           👾
         </div>
       ))}
+      <Crab />
     </div>
   );
 };
