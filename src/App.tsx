@@ -1,18 +1,9 @@
-/*
-TODO:
-- Add collision detection
-- Add score
-- Add levels
-- Add start screen
-- Add game over screen
-- Add sound
-- Add animations
- */
-
 import './App.css';
 
 import { useEffect, useState, useRef } from 'react';
 import './App.css';
+
+import { Crab } from './components/gameObjects/invaders/Crab/Crab';
 
 interface InvaderProps {
   x: number;
@@ -37,6 +28,7 @@ const App = () => {
     isActive: false,
   });
   const [keyPressed, setKeyPressed] = useState<string>('');
+  const [isInvaderActive, setIsInvaderActive] = useState<boolean>(false);
   const spaceshipRef = useRef<HTMLDivElement>(null);
 
   const handleKeyPress = (event: KeyboardEvent) => {
@@ -92,7 +84,8 @@ const App = () => {
       moveBullet();
       moveInvaders();
       moveSpaceShip();
-    }, 50);
+      setIsInvaderActive((prev) => !prev);
+    }, 600);
 
     return () => {
       document.removeEventListener('keydown', handleKeyPress);
@@ -129,6 +122,7 @@ const App = () => {
           👾
         </div>
       ))}
+      <Crab isCrabActive={isInvaderActive} />
     </div>
   );
 };
