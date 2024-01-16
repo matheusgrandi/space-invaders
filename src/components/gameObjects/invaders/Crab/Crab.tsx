@@ -1,12 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
-export function Crab() {
+export function Crab({ isCrabActive }: { isCrabActive: boolean }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const [isCrabActive, setIsCrabActive] = useState<boolean>(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+
+    console.log(isCrabActive);
 
     const ctx = canvas.getContext('2d');
 
@@ -25,7 +26,7 @@ export function Crab() {
     }
 
     return () => {
-      clearInterval(crabLoop);
+      ctx?.clearRect(0, 0, canvas.width, canvas.height);
     };
   }, [isCrabActive]);
 

@@ -28,6 +28,7 @@ const App = () => {
     isActive: false,
   });
   const [keyPressed, setKeyPressed] = useState<string>('');
+  const [isInvaderActive, setIsInvaderActive] = useState<boolean>(false);
   const spaceshipRef = useRef<HTMLDivElement>(null);
 
   const handleKeyPress = (event: KeyboardEvent) => {
@@ -83,7 +84,8 @@ const App = () => {
       moveBullet();
       moveInvaders();
       moveSpaceShip();
-    }, 50);
+      setIsInvaderActive((prev) => !prev);
+    }, 600);
 
     return () => {
       document.removeEventListener('keydown', handleKeyPress);
@@ -120,7 +122,7 @@ const App = () => {
           👾
         </div>
       ))}
-      <Crab />
+      <Crab isCrabActive={isInvaderActive} />
     </div>
   );
 };
