@@ -43,7 +43,7 @@ const App = () => {
 
   const moveBullet = () => {
     if (keyPressed === ' ' && !bullet.isActive) {
-      setBullet({ x: spaceship.x + 15, y: spaceship.y, isActive: true });
+      setBullet({ x: spaceship.x + 30, y: spaceship.y, isActive: true });
     }
     if (!bullet.isActive) return;
     if (bullet.y === 0) {
@@ -51,7 +51,7 @@ const App = () => {
       return;
     }
     setKeyPressed('');
-    setBullet((prev) => ({ ...prev, y: prev.y - 5 }));
+    setBullet((prev) => ({ ...prev, y: prev.y - 10 }));
   };
 
   const moveInvaders = () => {
@@ -78,18 +78,17 @@ const App = () => {
     }
   };
 
+  setInterval(() => {
+    moveInvaders();
+    setIsInvaderActive((prev) => !prev);
+  }, 1000);
+
   useEffect(() => {
     document.addEventListener('keydown', handleKeyPress);
-    const gameLoop = setInterval(() => {
-      moveBullet();
-      moveInvaders();
-      moveSpaceShip();
-      setIsInvaderActive((prev) => !prev);
-    }, 600);
-
+    moveBullet();
+    moveSpaceShip();
     return () => {
       document.removeEventListener('keydown', handleKeyPress);
-      clearInterval(gameLoop);
     };
   }, [handleKeyPress]);
 
